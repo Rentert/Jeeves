@@ -1,5 +1,9 @@
 package com.jeeves.core.search;
 
+import com.jeeves.core.preparation.CodePreparation;
+import com.jeeves.shared.Result;
+import org.eclipse.jdt.core.dom.CompilationUnit;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +13,17 @@ import java.util.List;
 public abstract class Parser
 {
     private final int ID;
+    protected final CodePreparation codePreparation;
+    protected CompilationUnit compilationUnit;
 
-    public Parser(int ID)
+
+    public Parser(final CodePreparation codePreparation, int ID)
     {
         this.ID = ID;
+        this.codePreparation = codePreparation;
     }
 
-    public final List<Integer> getEmptyErrorList ()
+    protected final List<Integer> getEmptyErrorList ()
     {
         List<Integer> list = new ArrayList<>();
         list.add(-1);
@@ -26,5 +34,13 @@ public abstract class Parser
     public final int getID()
     {
         return ID;
+    }
+
+
+    public abstract Result execute(String fileName);
+
+    protected int getLineNumber(final int startPosition)
+    {
+        return compilationUnit.getLineNumber(startPosition);
     }
 }
