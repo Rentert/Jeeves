@@ -1,7 +1,7 @@
 package com.jeeves;
 
 import com.jeeves.core.preparation.CustomCodePreparation;
-import com.jeeves.core.search.OverrideEqualsWithOutHashCode;
+import com.jeeves.core.search.NotCorrectEqualsOverride;
 import com.jeeves.core.search.Parser;
 
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class Main {
 
         map.put(key, code);
 
-        Parser parser = new OverrideEqualsWithOutHashCode(new CustomCodePreparation(map));
+        Parser parser = new NotCorrectEqualsOverride(new CustomCodePreparation(map));
 
         System.out.println(parser.execute(key).toString());
 

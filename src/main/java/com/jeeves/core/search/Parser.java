@@ -18,6 +18,8 @@ public abstract class Parser
     protected final CodePreparation codePreparation;
     protected CompilationUnit compilationUnit;
 
+    protected String analysisFileName;
+
 
     public Parser(final CodePreparation codePreparation, int ID)
     {
@@ -33,7 +35,10 @@ public abstract class Parser
         return list;
     }
 
-    protected void run(final ASTVisitor visitor, final String fileName) {
+    protected void run(final ASTVisitor visitor, final String fileName)
+    {
+        reInit(fileName);
+
         // на тот случай если переменные успели изменить свое состояние
         ASTParser parser = codePreparation.getCodeOnAST(fileName);
         compilationUnit = (CompilationUnit) parser.createAST(null);
@@ -48,6 +53,8 @@ public abstract class Parser
 
 
     public abstract Result execute(String fileName);
+
+    protected abstract void reInit (String analysisFileName);
 
     protected int getLineNumber(final int startPosition)
     {
