@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 /**
  * @author Aleksandrov Oleg
  */
-public class NotCorrectEqualsOverride extends Parser
+public final class NotCorrectEqualsOverride extends Parser
 {
     private final static Logger logger = LoggerFactory.getLogger(NotCorrectEqualsOverride.class);
 
