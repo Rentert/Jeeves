@@ -36,9 +36,6 @@ public abstract class Parser extends ASTVisitor implements ParserInterface
 
     public List<Integer> getEmptyErrorList ()
     {
-        List<Integer> list = new ArrayList<>();
-        list.add(-1);
-
-        return list;
+        return new ArrayList<>();
     }
 }

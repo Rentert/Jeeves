@@ -15,6 +15,7 @@ import java.util.List;
 public abstract class Parser
 {
     private final int ID;
+
     protected final CodePreparation codePreparation;
     protected CompilationUnit compilationUnit;
 

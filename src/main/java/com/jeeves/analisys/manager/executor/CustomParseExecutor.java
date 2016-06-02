@@ -26,7 +26,7 @@ public class CustomParseExecutor implements ParseExecutor
         parsers.add(new CreationManyConstrictorForMandatoryFieldsParserInterface(new CustomCodePreparation(map)));
         parsers.add(new NotCorrectClassStringUseParserInterface(new CustomCodePreparation(map)));
         parsers.add(new NotCorrectClassStringUseParserInterface(new CustomCodePreparation(map)));
-        parsers.add(new OverrideEqualsWithOutHashCodeParser(new CustomCodePreparation(map)));
+     //   parsers.add(new OverrideEqualsWithOutHashCodeParser(new CustomCodePreparation(map)));
         parsers.add(new UseReturnOnTryCatchFinallyParser(new CustomCodePreparation(map)));
 
         return parsers;
