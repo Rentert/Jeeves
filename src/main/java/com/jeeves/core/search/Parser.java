@@ -2,6 +2,8 @@ package com.jeeves.core.search;
 
 import com.jeeves.core.preparation.CodePreparation;
 import com.jeeves.shared.Result;
+import org.eclipse.jdt.core.dom.ASTParser;
+import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import java.util.ArrayList;
@@ -23,12 +25,20 @@ public abstract class Parser
         this.codePreparation = codePreparation;
     }
 
-    protected final List<Integer> getEmptyErrorList ()
+    protected static final List<Integer> getEmptyErrorList ()
     {
         List<Integer> list = new ArrayList<>();
         list.add(-1);
 
         return list;
+    }
+
+    protected void run(final ASTVisitor visitor, final String fileName) {
+        // на тот случай если переменные успели изменить свое состояние
+        ASTParser parser = codePreparation.getCodeOnAST(fileName);
+        compilationUnit = (CompilationUnit) parser.createAST(null);
+
+        compilationUnit.accept(visitor);
     }
 
     public final int getID()

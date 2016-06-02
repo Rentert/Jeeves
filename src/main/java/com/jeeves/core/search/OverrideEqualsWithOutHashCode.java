@@ -1,17 +1,11 @@
 package com.jeeves.core.search;
 
 import com.jeeves.core.preparation.CodePreparation;
-import com.jeeves.core.preparation.CustomCodePreparation;
 import com.jeeves.shared.Result;
-import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
-import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Aleksandrov Oleg
@@ -26,7 +20,7 @@ public class OverrideEqualsWithOutHashCode extends Parser
     private boolean hasEquals = false;
     private boolean hasHashCode = false;
 
-    private String analysisFileName = "";
+    private String analysisFileName;
 
     private void reInit (String analysisFileName)
     {
@@ -72,47 +66,8 @@ public class OverrideEqualsWithOutHashCode extends Parser
     {
         reInit(fileName);
 
-        // на тот случай если переменные успели изменить свое состояние
-        ASTParser parser = codePreparation.getCodeOnAST(fileName);
-        compilationUnit = (CompilationUnit) parser.createAST(null);
-
-        compilationUnit.accept(visitor);
-
-        logger.debug("Antipattern is found={}", hasEquals && !hasHashCode);
+        run(visitor, fileName);
 
         return new Result(getID(), getEmptyErrorList(), hasEquals && !hasHashCode);
-    }
-
-    public static void main(String[] args) {
-        String key = "123.java";
-        Map<String, String> map = new HashMap<>();
-        String code = " public class A {\n" +
-                "        public int a = 10;\n" +
-                "        public String str;\n" +
-                "\n" +
-                "        @Override\n" +
-                "        public boolean equals() {\n" +
-                "            return super.equals(obj);\n" +
-                "        }\n" +
-                "        \n" +
-                "        public A (int a, String str)\n" +
-                "        {\n" +
-                "            this.a = a;\n" +
-                "            this.str = str;\n" +
-                "        }\n" +
-                "\n" +
-                "        public A (String str, int a)\n" +
-                "        {\n" +
-                "            this.a = a;\n" +
-                "            this.str = str + String.valueOf(a);\n" +
-                "        }\n" +
-                "    }";
-
-        map.put(key, code);
-
-        Parser parser = new OverrideEqualsWithOutHashCode(new CustomCodePreparation(map));
-
-        logger.debug(parser.execute(key).toString());
-
     }
 }

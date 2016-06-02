@@ -1,61 +1,45 @@
 package com.jeeves;
 
-import org.eclipse.jdt.core.dom.*;
+import com.jeeves.core.preparation.CustomCodePreparation;
+import com.jeeves.core.search.OverrideEqualsWithOutHashCode;
+import com.jeeves.core.search.Parser;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-    public static void main(String args[]) throws Exception {
-        String str = "package javaproject;" // package for all classes
-                + "class Dummy {" //
-                + "   void testSearch(String queryStr, String dateStr, SearchResources twitter1) {" //
-                + "      Query query = new Query(queryStr).until(dateStr);" //
-                + "      QueryResult queryResult = twitter1.search(query);" //
-                + "   }" //
-                + "}";
 
-            ASTParser parser = ASTParser.newParser(AST.JLS8);
-            parser.setSource(str.toCharArray());
-            parser.setKind(ASTParser.K_COMPILATION_UNIT);
-            parser.setResolveBindings(true);
+    public static void main(String[] args) {
+        String key = "123.java";
+        Map<String, String> map = new HashMap<>();
+        String code = " public class A {\n" +
+                "        public int a = 10;\n" +
+                "        public String str;\n" +
+                "\n" +
+                "        @Override\n" +
+                "        public boolean equals() {\n" +
+                "            return super.equals(obj);\n" +
+                "        }\n" +
+                "        \n" +
+                "        public A (int a, String str)\n" +
+                "        {\n" +
+                "            this.a = a;\n" +
+                "            this.str = str;\n" +
+                "        }\n" +
+                "\n" +
+                "        public A (String str, int a)\n" +
+                "        {\n" +
+                "            this.a = a;\n" +
+                "            this.str = str + String.valueOf(a);\n" +
+                "        }\n" +
+                "    }";
 
-           /* parser.setEnvironment( // apply classpath
-                    new String[] { "C:\\eclipse\\workspace\\JavaProject\\bin" }, //
-                    null, null, true);*/
-            parser.setUnitName("any_name");
+        map.put(key, code);
 
-            final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+        Parser parser = new OverrideEqualsWithOutHashCode(new CustomCodePreparation(map));
 
-            cu.accept(new ASTVisitor() {
-                public boolean visit(MethodDeclaration node) {
-                    System.out.println(node.getName().getIdentifier());
-//                    if (node.getName().getIdentifier().equals("testSearch")) {
-//                        Block block = node.getBody();
-//                        block.accept(new ASTVisitor() {
-//                            public boolean visit(MethodInvocation node) {
-//                                System.out.println("Name: " + node.getName());
-//
-//                                Expression expression = node.getExpression();
-//                                if (expression != null) {
-//                                    System.out.println("Expr: " + expression.toString());
-//                                    ITypeBinding typeBinding = expression.resolveTypeBinding();
-//                                    if (typeBinding != null) {
-//                                        System.out.println("Type: " + typeBinding.getName());
-//                                    }
-//                                }
-//                                IMethodBinding binding = node.resolveMethodBinding();
-//                                if (binding != null) {
-//                                    ITypeBinding type = binding.getDeclaringClass();
-//                                    if (type != null) {
-//                                        System.out.println("Decl: " + type.getName());
-//                                    }
-//                                }
-//
-//                                return true;
-//                            }
-//                        });
-//                    }
-                    return true;
-                }
-            });
-        }
+        System.out.println(parser.execute(key).toString());
+
+    }
 
 }
