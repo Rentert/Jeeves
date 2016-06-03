@@ -1,8 +1,8 @@
 package com.jeeves;
 
 import com.jeeves.core.preparation.CustomCodePreparation;
+import com.jeeves.core.search.AST.Parsers.CreationManyConstrictorForMandatoryFields;
 import com.jeeves.core.search.Parser;
-import com.jeeves.core.search.regexp.parsers.UseReturnOnTryCatchFinally;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,23 +12,22 @@ public class Main {
     public static void main(String[] args) {
         String key = "123.java";
         Map<String, String> map = new HashMap<>();
-        String code = "        String key = \"123.java\";\n" +
-                "        \n" +
-                "        try {\n" +
-                "            return;\n" +
-                "        }\n" +
-                "        catch (Exception e)\n" +
-                "        {\n" +
+        String code = "class A\n" +
+                "    {\n" +
+                "        public A(int a){\n" +
                 "            \n" +
                 "        }\n" +
-                "        finally {\n" +
-                "            return;\n" +
-                "        }";
+                "        \n" +
+                "        public A(String e, int y) {\n" +
+                "            return 1;\n" +
+                "        }\n" +
+                "\n" +
+                "    }";
 
 
         map.put(key, code);
 
-        Parser parser = new UseReturnOnTryCatchFinally(new CustomCodePreparation(map));
+        Parser parser = new CreationManyConstrictorForMandatoryFields(new CustomCodePreparation(map));
 
         System.out.println(parser.execute(key).toString());
     }
