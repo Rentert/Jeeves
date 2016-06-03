@@ -4,6 +4,8 @@ import com.jeeves.core.preparation.CodePreparation;
 import com.jeeves.shared.Result;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Vector;
@@ -13,6 +15,8 @@ import java.util.Vector;
  */
 public class UseOpenFields extends Parser
 {
+    private final static Logger logger = LoggerFactory.getLogger(UseOpenFields.class);
+
     private final String PUBLIC = "public";
 
     private List<Integer> lineList = new Vector<>();
@@ -27,7 +31,10 @@ public class UseOpenFields extends Parser
             {
                 if (value.toString().equals(PUBLIC))
                 {
-                    lineList.add(compilationUnit.getLineNumber(node.getStartPosition()));
+                    int line = compilationUnit.getLineNumber(node.getStartPosition());
+                    lineList.add(line);
+
+                    logger.debug("Found public fields on file{}, line={}", analysisFileName, line);
                 }
             });
 
@@ -43,6 +50,8 @@ public class UseOpenFields extends Parser
     @Override
     public Result execute(String fileName)
     {
+        analysisFileName = fileName;
+
         run(visitor, fileName);
 
         return new Result(getID(), lineList, !lineList.isEmpty());
