@@ -1,6 +1,6 @@
 package com.jeeves.analisys.manager.parsers;
 
-import com.jeeves.core.search.*;
+import com.jeeves.core.search.AST.Parsers.OverrideEqualsWithOutHashCode;
 import com.jeeves.shared.Result;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class OverrideEqualsWithOutHashCodeTest extends ParserTest
 
     private Result run(final String code)
     {
-        com.jeeves.core.search.Parser parser = new OverrideEqualsWithOutHashCode(init(code));
+        OverrideEqualsWithOutHashCode parser = new OverrideEqualsWithOutHashCode(init(code));
 
         return parser.execute(key);
 

@@ -1,5 +1,6 @@
 package com.jeeves.analisys.manager.parsers;
 
+import com.jeeves.core.search.AST.Parsers.NotCorrectEqualsOverride;
 import com.jeeves.shared.Result;
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,13 +8,13 @@ import org.junit.Test;
 /**
  * @author Aleksandrov Oleg
  */
-public class NotCorrectEqualsOverrideParserTest extends ParserTest
+public class NotCorrectEqualsOverrideTest extends ParserTest
 {
     private final String key = "123.java";
 
     private Result run(final String code)
     {
-        ParserInterface parser = new NotCorrectEqualsOverrideParser(init(code));
+        NotCorrectEqualsOverride parser = new NotCorrectEqualsOverride(init(code));
 
         return parser.execute(key);
     }
@@ -70,8 +71,7 @@ public class NotCorrectEqualsOverrideParserTest extends ParserTest
 
     @Test
     // чек с кодом в котором нет функции equals
-    public void testWithEquals ()
-    {
+    public void testWithEquals () {
 
         String code = "class A\n" +
                 "    {\n" +
@@ -90,12 +90,5 @@ public class NotCorrectEqualsOverrideParserTest extends ParserTest
                 "    }";
 
         Assert.assertFalse(run(code).isAntipatternFound());
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testWithNullData ()
-    {
-        new NotCorrectEqualsOverrideParser(null);
     }
 }

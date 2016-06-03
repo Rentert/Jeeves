@@ -1,6 +1,6 @@
 package com.jeeves.analisys.manager.parsers;
 
-import com.jeeves.core.search.*;
+import com.jeeves.core.search.AST.Parsers.UseOpenFields;
 import com.jeeves.shared.Result;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class UseOpenFieldsTest extends ParserTest {
 
     private Result run (final String code)
     {
-        com.jeeves.core.search.Parser e = new UseOpenFields(init(code));
+        UseOpenFields e = new UseOpenFields(init(code));
 
         return e.execute(key);
     }

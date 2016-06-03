@@ -1,4 +1,4 @@
-package com.jeeves.core.search;
+package com.jeeves.core.search.AST.Parsers;
 
 import com.jeeves.core.preparation.CodePreparation;
 import com.jeeves.shared.Result;
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 /**
  * @author Aleksandrov Oleg
  */
-public final class NotCorrectEqualsOverride extends Parser
+public final class NotCorrectEqualsOverride extends AbstractASTParser
 {
     private final static Logger logger = LoggerFactory.getLogger(NotCorrectEqualsOverride.class);
 

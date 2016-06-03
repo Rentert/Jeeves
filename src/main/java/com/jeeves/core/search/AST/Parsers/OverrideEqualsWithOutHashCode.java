@@ -1,4 +1,4 @@
-package com.jeeves.core.search;
+package com.jeeves.core.search.AST.Parsers;
 
 import com.jeeves.core.preparation.CodePreparation;
 import com.jeeves.shared.Result;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Aleksandrov Oleg
  */
-public class OverrideEqualsWithOutHashCode extends Parser
+public class OverrideEqualsWithOutHashCode extends AbstractASTParser
 {
     private final static Logger logger = LoggerFactory.getLogger(OverrideEqualsWithOutHashCode.class);
 

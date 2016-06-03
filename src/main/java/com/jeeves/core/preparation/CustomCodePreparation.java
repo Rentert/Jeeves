@@ -79,9 +79,9 @@ public final class CustomCodePreparation implements CodePreparation
     }
 
     // TODO: create method
-    private String clearCode(final String code)
+    private String clearCode(String code)
     {
-        return code;
+        return code.replaceAll("\n", "");
     }
 
     public CustomCodePreparation(final Map<String, String> map)

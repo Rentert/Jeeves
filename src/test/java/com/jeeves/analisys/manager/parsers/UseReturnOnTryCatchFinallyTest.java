@@ -1,6 +1,6 @@
 package com.jeeves.analisys.manager.parsers;
 
-import com.jeeves.core.search.AST.Parsers.ConstructorArgDiffOnlyOrder;
+import com.jeeves.core.search.regexp.parsers.UseReturnOnTryCatchFinally;
 import com.jeeves.shared.Result;
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,12 +8,12 @@ import org.junit.Test;
 /**
  * @author Aleksandrov Oleg
  */
-public class ConstructorArgDiffOnlyOrderTest extends ParserTest {
+public class UseReturnOnTryCatchFinallyTest extends ParserTest {
     private final String key = "123.java";
 
     private Result run(final String code)
     {
-        ConstructorArgDiffOnlyOrder parser = new ConstructorArgDiffOnlyOrder(init(code));
+        UseReturnOnTryCatchFinally parser = new UseReturnOnTryCatchFinally(init(code));
 
         return parser.execute(key);
     }
@@ -23,17 +23,18 @@ public class ConstructorArgDiffOnlyOrderTest extends ParserTest {
     public void testWithAntiPattern ()
     {
 
-        String code = "class A\n" +
-                "    {\n" +
-                "        public A(int a, String b){\n" +
+        String code = "String key = \"123.java\";\n" +
+                "        \n" +
+                "        try {\n" +
+                "            return;\n" +
+                "        }\n" +
+                "        catch (Exception e)\n" +
+                "        {\n" +
                 "            \n" +
                 "        }\n" +
-                "        \n" +
-                "        public A(String e, int y) {\n" +
-                "            return 1;\n" +
-                "        }\n" +
-                "\n" +
-                "    }";
+                "        finally {\n" +
+                "            return;\n" +
+                "        }";
 
         Assert.assertTrue(run(code).isAntipatternFound());
 
@@ -50,8 +51,13 @@ public class ConstructorArgDiffOnlyOrderTest extends ParserTest {
                 "            \n" +
                 "        }\n" +
                 "        \n" +
-                "        public A(int d, String d) {\n" +
+                "        private int d(int d) {\n" +
                 "            return 1;\n" +
+                "        }\n" +
+                "\n" +
+                "        @Override\n" +
+                "        public boolean equals(Object obj) {\n" +
+                "            return super.equals(obj);\n" +
                 "        }\n" +
                 "    }";
 

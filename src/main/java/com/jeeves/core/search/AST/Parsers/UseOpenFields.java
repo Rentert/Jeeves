@@ -1,4 +1,4 @@
-package com.jeeves.core.search;
+package com.jeeves.core.search.AST.Parsers;
 
 import com.jeeves.core.preparation.CodePreparation;
 import com.jeeves.shared.Result;
@@ -13,7 +13,7 @@ import java.util.Vector;
 /**
  * @author Aleksandrov Oleg
  */
-public class UseOpenFields extends Parser
+public class UseOpenFields extends AbstractASTParser
 {
     private final static Logger logger = LoggerFactory.getLogger(UseOpenFields.class);
 

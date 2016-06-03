@@ -1,7 +1,7 @@
-package com.jeeves.core.search;
+package com.jeeves.core.search.AST.Parsers;
 
 import com.jeeves.core.preparation.CodePreparation;
-import com.jeeves.core.search.parse.helper.ConstructorParser;
+import com.jeeves.core.search.AST.Parsers.helper.ConstructorParser;
 import com.jeeves.shared.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * @author Aleksandrov Oleg
  */
-public class ConstructorArgDiffOnlyOrder extends Parser
+public class ConstructorArgDiffOnlyOrder extends AbstractASTParser
 {
     private final static Logger logger = LoggerFactory.getLogger(ConstructorArgDiffOnlyOrder.class);
 

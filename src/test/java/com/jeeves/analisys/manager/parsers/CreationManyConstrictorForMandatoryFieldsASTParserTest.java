@@ -7,12 +7,12 @@ import org.junit.Test;
 /**
  * @author Aleksandrov Oleg
  */
-public class NotCorrectEqualsUseParserTest extends ParserTest {
+public class CreationManyConstrictorForMandatoryFieldsASTParserTest extends ParserTest {
     private final String key = "123.java";
 
     private Result run(final String code)
     {
-        ParserInterface parser = new NotCorrectEqualsOverrideParser(init(code));
+        ParserInterface parser = null;
 
         return parser.execute(key);
     }
@@ -95,6 +95,6 @@ public class NotCorrectEqualsUseParserTest extends ParserTest {
     @Test(expected = IllegalArgumentException.class)
     public void testWithNullData ()
     {
-        new NotCorrectEqualsOverrideParser(null);
+       // new NotCorrectEqualsOverrideParser(null);
     }
 }

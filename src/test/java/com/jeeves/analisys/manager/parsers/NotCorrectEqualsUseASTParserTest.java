@@ -7,12 +7,12 @@ import org.junit.Test;
 /**
  * @author Aleksandrov Oleg
  */
-public class NotCorrectClassStringUseParserTest extends ParserTest {
+public class NotCorrectEqualsUseASTParserTest extends ParserTest {
     private final String key = "123.java";
 
     private Result run(final String code)
     {
-        ParserInterface parser = new NotCorrectEqualsOverrideParser(init(code));
+        ParserInterface parser = null;
 
         return parser.execute(key);
     }
@@ -90,11 +90,5 @@ public class NotCorrectClassStringUseParserTest extends ParserTest {
 
         Assert.assertFalse(run(code).isAntipatternFound());
 
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testWithNullData ()
-    {
-        new NotCorrectEqualsOverrideParser(null);
     }
 }
