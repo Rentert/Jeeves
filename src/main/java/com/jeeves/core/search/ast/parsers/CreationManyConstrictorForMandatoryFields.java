@@ -1,7 +1,7 @@
-package com.jeeves.core.search.AST.Parsers;
+package com.jeeves.core.search.ast.parsers;
 
 import com.jeeves.core.preparation.CodePreparation;
-import com.jeeves.core.search.AST.Parsers.helper.ConstructorParser;
+import com.jeeves.core.search.ast.parsers.helper.ConstructorParser;
 import com.jeeves.shared.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

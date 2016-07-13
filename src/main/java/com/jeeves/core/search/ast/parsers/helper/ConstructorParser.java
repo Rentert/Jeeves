@@ -1,4 +1,4 @@
-package com.jeeves.core.search.AST.Parsers.helper;
+package com.jeeves.core.search.ast.parsers.helper;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MethodDeclaration;

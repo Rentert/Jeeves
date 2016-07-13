@@ -1,7 +1,7 @@
 package com.jeeves;
 
 import com.jeeves.core.preparation.CustomCodePreparation;
-import com.jeeves.core.search.AST.Parsers.CreationManyConstrictorForMandatoryFields;
+import com.jeeves.core.search.ast.parsers.CreationManyConstrictorForMandatoryFields;
 import com.jeeves.core.search.Parser;
 
 import java.util.HashMap;

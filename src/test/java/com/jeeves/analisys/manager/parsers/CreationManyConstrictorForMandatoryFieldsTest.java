@@ -1,6 +1,6 @@
 package com.jeeves.analisys.manager.parsers;
 
-import com.jeeves.core.search.AST.Parsers.CreationManyConstrictorForMandatoryFields;
+import com.jeeves.core.search.ast.parsers.CreationManyConstrictorForMandatoryFields;
 import com.jeeves.shared.Result;
 import org.junit.Assert;
 import org.junit.Test;

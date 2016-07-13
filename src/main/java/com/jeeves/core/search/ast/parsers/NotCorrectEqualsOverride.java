@@ -1,4 +1,4 @@
-package com.jeeves.core.search.AST.Parsers;
+package com.jeeves.core.search.ast.parsers;
 
 import com.jeeves.core.preparation.CodePreparation;
 import com.jeeves.shared.Result;
