@@ -11,6 +11,7 @@ import java.util.Set;
 /**
  * @author Aleksandrov Oleg
  */
+
 public final class ConstructorParser extends ASTVisitor
 {
 
@@ -41,8 +42,7 @@ public final class ConstructorParser extends ASTVisitor
             Set<String> parametersLists = new HashSet<>();
 
             node.parameters().forEach( value ->
-                        parametersLists.add(cutString(value.toString()))
-                );
+                        parametersLists.add(cutString(value.toString())) );
 
             constructorsArgs.add(parametersLists);
         }
