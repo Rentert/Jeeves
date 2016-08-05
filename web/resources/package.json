@@ -1,0 +1,29 @@
+{
+  "name": "jeeves",
+  "version": "0.0.1",
+  "private": false,
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rentert/Jeeves.git"
+  },
+  "author": "smith5989@gmail.com",
+  "bugs": {
+    "url": "https://github.com/Rentert/Jeeves/issues"
+  },
+  "homepage": "https://github.com/Rentert/Jeeves",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "license": "ISC"
+}
